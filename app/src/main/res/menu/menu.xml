@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group1">
+        <item
+            android:id="@+id/travellers"
+            android:orderInCategory="1"
+            android:title="Travellers">
+        </item>
+        <item
+            android:id="@+id/depts"
+            android:orderInCategory="2"
+            android:title="Depts">
+        </item>
+    </group>
+</menu>
