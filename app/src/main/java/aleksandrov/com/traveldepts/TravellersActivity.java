@@ -8,7 +8,7 @@ public class TravellersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle saveInstanceState) {
 
-        setContentView(R.layout.activity_new_traveller);
+        setContentView(R.layout.activity_travellers);
         super.onCreate(saveInstanceState);
     }
 
