@@ -1,6 +1,7 @@
 package aleksandrov.com.traveldepts;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class NewDeptActivity extends AppCompatActivity implements View.OnClickListener{
+public class DeptsActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,11 @@ public class NewDeptActivity extends AppCompatActivity implements View.OnClickLi
 
         final Button addDeptButton = (Button) findViewById(R.id.addDebtButton);
         addDeptButton.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -45,7 +51,7 @@ public class NewDeptActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.travellers : {
 
-                Intent travellerIntent = new Intent(this, NewTravellerActivity.class);
+                Intent travellerIntent = new Intent(this, TravellersActivity.class);
                 startActivity(travellerIntent);
                 break;
             }
@@ -58,5 +64,17 @@ public class NewDeptActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveText(String text) {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = preferences.edit();
+        ed.putString("saved", text);
+        ed.commit();
+    }
+
+    private String loadText() {
+        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+        return sPref.getString("saved", "");
     }
 }
