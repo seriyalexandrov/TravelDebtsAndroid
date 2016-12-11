@@ -1,4 +1,4 @@
-package aleksandrov.com.traveldepts;
+package com.seriyalexandrov.traveldepts;
 
 /**
  * Created by Ser on 21/11/2016.

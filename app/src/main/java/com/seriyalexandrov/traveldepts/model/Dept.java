@@ -1,4 +1,4 @@
-package aleksandrov.com.traveldepts.model;
+package com.seriyalexandrov.traveldepts.model;
 
 public class Dept {
 

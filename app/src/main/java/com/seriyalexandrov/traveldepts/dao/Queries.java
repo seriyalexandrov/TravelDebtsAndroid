@@ -1,10 +1,10 @@
-package aleksandrov.com.traveldepts.dao;
+package com.seriyalexandrov.traveldepts.dao;
 
 public final class Queries {
 
     public static final String CREATE_DEPTS_TABLE_QUERY =
             "create table depts ("
-            + "deptor text"
+            + "deptor text,"
             + "creditor text,"
             + "summ real,"
             + "currency text,"
@@ -12,12 +12,12 @@ public final class Queries {
 
     public static final String SELECT_ALL_DEPTS_QUERY =
             "select " +
-                "d.deptor, " +
-                "d.creditor, " +
-                "d.summ, " +
-                "d.currency, " +
-                "d.comment " +
-            "from depts d";
+                "deptor, " +
+                "creditor, " +
+                "summ, " +
+                "currency, " +
+                "comment " +
+            "from depts";
 
     private Queries() {}
 }

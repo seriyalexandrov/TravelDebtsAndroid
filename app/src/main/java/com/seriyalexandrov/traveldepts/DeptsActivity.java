@@ -1,10 +1,12 @@
-package aleksandrov.com.traveldepts;
+package com.seriyalexandrov.traveldepts;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,20 +18,25 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.seriyalexandrov.traveldepts.dao.Queries;
+import com.seriyalexandrov.traveldepts.model.Dept;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import aleksandrov.com.traveldepts.dao.DbHelper;
-import aleksandrov.com.traveldepts.dao.Queries;
-import aleksandrov.com.traveldepts.model.Dept;
-
 public class DeptsActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private DbHelper dbHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_depts);
+
+        dbHelper = new DbHelper(getBaseContext());
+        db = dbHelper.getWritableDatabase();
 
         showDeptsList();
 
@@ -84,24 +91,19 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
 
     private void addNewDept(Dept dept) {
 
-        final DbHelper dbHelper = new DbHelper(this);
-        final SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("deptor", dept.deptorName);
         cv.put("creditor", dept.creditorName);
         cv.put("summ", dept.summ);
         cv.put("currency", dept.currency);
-        cv.put("commnet", dept.comment);
+        cv.put("comment", dept.comment);
         db.insert(Constants.DEPTS_TABLE, null, cv);
-        db.close();
-        dbHelper.close();
     }
 
     private List<Dept> getDepts() {
 
+
         List<Dept> depts = new ArrayList<>();
-        final DbHelper dbHelper = new DbHelper(this);
-        final SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor c = db.rawQuery(Queries.SELECT_ALL_DEPTS_QUERY, null);
         if (c == null) return Collections.EMPTY_LIST;
@@ -112,8 +114,6 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
             } while (c.moveToNext());
         }
         c.close();
-        db.close();
-        dbHelper.close();
         return depts;
     }
 
@@ -150,5 +150,21 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         return sPref.getString("saved", "");
     }
 
+    class DbHelper extends SQLiteOpenHelper {
 
+        public DbHelper(Context context) {
+            super(context, "td_depts", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase sqLiteDatabase) {
+            sqLiteDatabase.execSQL(Queries.CREATE_DEPTS_TABLE_QUERY);
+            Log.e("!!!!!!!!!!!", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+        }
+    }
 }
