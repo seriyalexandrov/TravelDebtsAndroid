@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".TravellersActivity"/>
         <activity android:name=".BalanceActivity"/>
+        <activity android:name=".AddDeptActivity"/>
     </application>
 
 </manifest>

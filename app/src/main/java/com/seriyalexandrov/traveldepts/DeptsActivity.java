@@ -54,7 +54,8 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()) {
             case R.id.addDebtButton : {
-                addNewDept(new Dept("deptor", "creditor", 4.5, "EUR", "comment"));
+                Intent addDeptIntent = new Intent(this, AddDeptActivity.class);
+                startActivity(addDeptIntent);
                 break;
             }
         }
@@ -159,7 +160,6 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
             sqLiteDatabase.execSQL(Queries.CREATE_DEPTS_TABLE_QUERY);
-            Log.e("!!!!!!!!!!!", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
 
         @Override
