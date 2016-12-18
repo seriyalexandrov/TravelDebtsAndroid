@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Who payed:"
         android:layout_gravity="left"
-        android:textSize="24sp">
-    </TextView>
+        android:text="Who payed:"
+        android:textSize="24sp"></TextView>
+
     <Spinner
         android:id="@+id/travellersDeptSpinner"
         android:layout_width="fill_parent"
@@ -19,50 +19,66 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Summ:"
         android:layout_gravity="left"
-        android:textSize="24sp">
-    </TextView>
+        android:text="Summ:"
+        android:textSize="24sp"></TextView>
+
     <EditText
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="5pt"
         android:id="@+id/deptDeptSumm"
         android:layout_width="match_parent"
-        android:inputType="numberDecimal">
-    </EditText>
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description:"
-        android:layout_gravity="left"
-        android:textSize="24sp">
-    </TextView>
-    <EditText
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginLeft="5pt"
-        android:id="@+id/deptDescription"
-        android:layout_width="match_parent"
-        android:inputType="text">
-     </EditText>
+        android:layout_weight="1"
+        android:inputType="numberDecimal"></EditText>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Who payed:"
         android:layout_gravity="left"
-        android:textSize="24sp">
-    </TextView>
+        android:text="Comment:"
+        android:textSize="24sp"></TextView>
+
+    <EditText
+        android:id="@+id/deptDeptComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5pt"
+        android:layout_weight="1"
+        android:inputType="text"></EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Who payed:"
+        android:textSize="24sp"></TextView>
+
     <Spinner
         android:id="@+id/deptTypeDeptSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/addDebtDeptButton"
-        android:layout_width="50pt"
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="Add"/>
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/addDebtDeptButton"
+            android:layout_width="50pt"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/cancelDebtDeptButton"
+            android:layout_width="50pt"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="Cancel" />
+
+    </LinearLayout>
 </LinearLayout>

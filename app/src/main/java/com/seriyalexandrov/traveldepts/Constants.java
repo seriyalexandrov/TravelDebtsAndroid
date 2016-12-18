@@ -11,5 +11,8 @@ public final class Constants {
     //Tables
     public static final String DEPTS_TABLE = "depts";
 
+    //log
+    public static final String LOG_TAG = "TRAVELDEPTS";
+
     private Constants() {}
 }

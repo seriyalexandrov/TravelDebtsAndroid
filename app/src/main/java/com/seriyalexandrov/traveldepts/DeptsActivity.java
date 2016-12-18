@@ -1,12 +1,10 @@
 package com.seriyalexandrov.traveldepts;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.seriyalexandrov.traveldepts.dao.DbHelper;
 import com.seriyalexandrov.traveldepts.dao.Queries;
 import com.seriyalexandrov.traveldepts.model.Dept;
 
@@ -35,13 +34,19 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_depts);
 
-        dbHelper = new DbHelper(getBaseContext());
-        db = dbHelper.getWritableDatabase();
+        dbHelper = new DbHelper(this);
+        db = dbHelper.getReadableDatabase();
 
         showDeptsList();
 
         final Button addDeptButton = (Button) findViewById(R.id.addDebtButton);
         addDeptButton.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        showDeptsList();
     }
 
     @Override
@@ -90,41 +95,21 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    private void addNewDept(Dept dept) {
-
-        ContentValues cv = new ContentValues();
-        cv.put("deptor", dept.deptorName);
-        cv.put("creditor", dept.creditorName);
-        cv.put("summ", dept.summ);
-        cv.put("currency", dept.currency);
-        cv.put("comment", dept.comment);
-        db.insert(Constants.DEPTS_TABLE, null, cv);
-    }
-
-    private List<Dept> getDepts() {
-
-
-        List<Dept> depts = new ArrayList<>();
-
-        Cursor c = db.rawQuery(Queries.SELECT_ALL_DEPTS_QUERY, null);
-        if (c == null) return Collections.EMPTY_LIST;
-        if (c.moveToFirst()) {
-            do {
-               String deptor = c.getString(0);
-
-            } while (c.moveToNext());
-        }
-        c.close();
-        return depts;
-    }
-
     private void showDeptsList() {
         LinearLayout deptsLayout = (LinearLayout)findViewById(R.id.deptsList);
         LayoutInflater inflater = getLayoutInflater();
         List<Dept> depts = getDepts();
 
+        Log.i(Constants.LOG_TAG, String.valueOf(depts.size()));
+
         for(Dept dept : depts) {
             View deptView = inflater.inflate(R.layout.dept, deptsLayout, false);
+
+            TextView deptor = (TextView) deptView.findViewById(R.id.deptor);
+            deptor.setText(dept.deptorName);
+
+            TextView creditor = (TextView) deptView.findViewById(R.id.creditor);
+            creditor.setText(dept.creditorName);
 
             TextView deptName = (TextView) deptView.findViewById(R.id.deptComment);
             deptName.setText(dept.comment);
@@ -151,20 +136,23 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         return sPref.getString("saved", "");
     }
 
-    class DbHelper extends SQLiteOpenHelper {
+    private List<Dept> getDepts() {
 
-        public DbHelper(Context context) {
-            super(context, "td_depts", null, 1);
+        List<Dept> depts = new ArrayList<>();
+
+        Cursor c = db.rawQuery(Queries.SELECT_ALL_DEPTS_QUERY, null);
+        if (c == null) return Collections.EMPTY_LIST;
+        if (c.moveToFirst()) {
+            do {
+                String deptor = c.getString(0);
+                String creditor = c.getString(1);
+                String summ = c.getString(2);
+                String currency = c.getString(3);
+                String comment = c.getString(4);
+                depts.add(new Dept(deptor, creditor, summ, currency, comment));
+            } while (c.moveToNext());
         }
-
-        @Override
-        public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            sqLiteDatabase.execSQL(Queries.CREATE_DEPTS_TABLE_QUERY);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-        }
+        c.close();
+        return depts;
     }
 }

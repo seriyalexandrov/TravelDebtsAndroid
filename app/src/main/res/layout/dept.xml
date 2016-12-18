@@ -1,47 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginTop="10dp">
-    <TextView
-        android:id="@+id/deptor"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_gravity="top|center_horizontal"
-        android:textSize="24sp">
-    </TextView>
-    <TextView
-    android:id="@+id/creditor"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="TextView"
-    android:layout_gravity="top|center_horizontal"
-    android:textSize="24sp">
-</TextView>
-    <TextView
-        android:id="@+id/deptComment"
-        android:layout_width="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt">
+        <TextView
+            android:id="@+id/deptComment"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_gravity="top|center_horizontal"
-        android:textSize="24sp">
-    </TextView>
-    <TextView
-        android:id="@+id/deptSumm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_gravity="bottom|left"
-        android:layout_marginLeft="5dp">
-    </TextView>
-    <TextView
-        android:id="@+id/deptCurr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="5dp">
-    </TextView>
-</FrameLayout> 
+        android:gravity="center"
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt">
+        <TextView
+            android:id="@+id/deptor"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1pt"
+            android:layout_marginRight="1pt"
+            android:text="->"
+            android:textSize="24sp"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/creditor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/deptSumm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="TextView"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/deptCurr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="TextView"></TextView>
+    </LinearLayout>
+</LinearLayout>
