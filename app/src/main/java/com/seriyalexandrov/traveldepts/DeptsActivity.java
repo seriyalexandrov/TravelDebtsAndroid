@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,8 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.seriyalexandrov.traveldepts.dao.DbHelper;
 import com.seriyalexandrov.traveldepts.dao.Queries;
@@ -63,6 +66,10 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(addDeptIntent);
                 break;
             }
+            case R.id.removeDeptButton : {
+                Toast.makeText(this, "Removed!", Toast.LENGTH_LONG);
+                break;
+            }
         }
     }
 
@@ -100,8 +107,6 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         LayoutInflater inflater = getLayoutInflater();
         List<Dept> depts = getDepts();
 
-        Log.i(Constants.LOG_TAG, String.valueOf(depts.size()));
-
         for(Dept dept : depts) {
             View deptView = inflater.inflate(R.layout.dept, deptsLayout, false);
 
@@ -119,6 +124,9 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
 
             TextView deptCurr = (TextView) deptView.findViewById(R.id.deptCurr);
             deptCurr.setText(dept.currency);
+
+            ImageButton button = (ImageButton) deptView.findViewById(R.id.removeDeptButton);
+            button.setOnClickListener(this);
 
             deptsLayout.addView(deptView);
         }

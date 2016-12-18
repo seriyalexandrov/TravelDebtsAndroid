@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:layout_marginLeft="10pt"
-        android:layout_marginRight="10pt">
+        android:layout_marginLeft="1pt"
+        android:layout_marginRight="1pt">
         <TextView
             android:id="@+id/deptComment"
             android:layout_height="wrap_content"
@@ -26,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginLeft="10pt"
-        android:layout_marginRight="10pt">
+        android:layout_marginLeft="1pt"
+        android:layout_marginRight="1pt">
         <TextView
             android:id="@+id/deptor"
             android:layout_weight="1"
@@ -68,5 +68,12 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="TextView"></TextView>
+
+        <ImageButton
+            android:id="@+id/removeDeptButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/delete_button" />
+
     </LinearLayout>
 </LinearLayout>
