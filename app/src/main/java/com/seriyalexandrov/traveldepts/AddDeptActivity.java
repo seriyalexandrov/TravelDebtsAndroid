@@ -3,6 +3,7 @@ package com.seriyalexandrov.traveldepts;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import android.widget.Spinner;
 
 import com.seriyalexandrov.traveldepts.dao.DbHelper;
 import com.seriyalexandrov.traveldepts.model.Dept;
+
+import java.util.UUID;
 
 public class AddDeptActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,12 +77,13 @@ public class AddDeptActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void storeNewDept() {
+        String id = UUID.randomUUID().toString();
         String creditor = travellersSpinner.getSelectedItem().toString();
         String deptor = deptTypeSpinner.getSelectedItem().toString();
         String summ = ((EditText) findViewById(R.id.deptDeptSumm)).getText().toString();
         String comment = ((EditText) findViewById(R.id.deptDeptComment)).getText().toString();
-        Dept dept = new Dept(deptor, creditor, summ, "EUR", comment);
-
+        Dept dept = new Dept(id, deptor, creditor, summ, "EUR", comment);
+        Log.i(Constants.LOG_TAG, id);
         dbHelper.addNewDept(dept);
     }
 }

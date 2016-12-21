@@ -40,8 +40,6 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         dbHelper = new DbHelper(this);
         db = dbHelper.getReadableDatabase();
 
-        showDeptsList();
-
         final Button addDeptButton = (Button) findViewById(R.id.addDebtButton);
         addDeptButton.setOnClickListener(this);
     }
@@ -64,10 +62,6 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
             case R.id.addDebtButton : {
                 Intent addDeptIntent = new Intent(this, AddDeptActivity.class);
                 startActivity(addDeptIntent);
-                break;
-            }
-            case R.id.removeDeptButton : {
-                Toast.makeText(this, "Removed!", Toast.LENGTH_LONG);
                 break;
             }
         }
@@ -125,8 +119,15 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
             TextView deptCurr = (TextView) deptView.findViewById(R.id.deptCurr);
             deptCurr.setText(dept.currency);
 
+            final String id = dept.id;
             ImageButton button = (ImageButton) deptView.findViewById(R.id.removeDeptButton);
-            button.setOnClickListener(this);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    removeDeptById(id);
+                    findViewById(R.id.deptsScroll).invalidate();
+                }
+            });
 
             deptsLayout.addView(deptView);
         }
@@ -152,15 +153,22 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         if (c == null) return Collections.EMPTY_LIST;
         if (c.moveToFirst()) {
             do {
-                String deptor = c.getString(0);
-                String creditor = c.getString(1);
-                String summ = c.getString(2);
-                String currency = c.getString(3);
-                String comment = c.getString(4);
-                depts.add(new Dept(deptor, creditor, summ, currency, comment));
+                String id = c.getString(0);
+                String deptor = c.getString(1);
+                String creditor = c.getString(2);
+                String summ = c.getString(3);
+                String currency = c.getString(4);
+                String comment = c.getString(5);
+                depts.add(new Dept(id, deptor, creditor, summ, currency, comment));
             } while (c.moveToNext());
         }
         c.close();
         return depts;
+    }
+
+    private void removeDeptById(String id) {
+        Log.i(Constants.LOG_TAG, "id = " + id);
+        String params[] = {id};
+        db.delete(Constants.DEPTS_TABLE, Queries.DELETE_DEPT_BY_ID_CLAUSE, params);
     }
 }

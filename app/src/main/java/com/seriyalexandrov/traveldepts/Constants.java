@@ -9,7 +9,7 @@ public final class Constants {
     public static final int DEPTS_ADD_DEPTS_BUTTON = 1;
 
     //Tables
-    public static final String DEPTS_TABLE = "depts";
+    public static final String DEPTS_TABLE = "traveldepts_depts";
 
     //log
     public static final String LOG_TAG = "TRAVELDEPTS";

@@ -1,9 +1,12 @@
 package com.seriyalexandrov.traveldepts.dao;
 
+import static com.seriyalexandrov.traveldepts.Constants.DEPTS_TABLE;
+
 public final class Queries {
 
     public static final String CREATE_DEPTS_TABLE_QUERY =
-            "create table depts ("
+            "create table " + DEPTS_TABLE + " ("
+            + "id text,"
             + "deptor text,"
             + "creditor text,"
             + "summ real,"
@@ -12,12 +15,16 @@ public final class Queries {
 
     public static final String SELECT_ALL_DEPTS_QUERY =
             "select " +
-                "deptor, " +
-                "creditor, " +
-                "summ, " +
-                "currency, " +
-                "comment " +
-            "from depts";
+            "id, " +
+            "deptor, " +
+            "creditor, " +
+            "summ, " +
+            "currency, " +
+            "comment " +
+            "from " + DEPTS_TABLE;
+
+    public static final String DELETE_DEPT_BY_ID_CLAUSE =
+            "id = ?";
 
     private Queries() {}
 }
