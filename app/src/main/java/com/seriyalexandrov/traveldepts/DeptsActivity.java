@@ -1,11 +1,9 @@
 package com.seriyalexandrov.traveldepts;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.seriyalexandrov.traveldepts.dao.DbHelper;
 import com.seriyalexandrov.traveldepts.dao.Queries;
@@ -47,7 +44,7 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        showDeptsList();
+        refreshDeptsList();
     }
 
     @Override
@@ -96,9 +93,11 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDeptsList() {
-        LinearLayout deptsLayout = (LinearLayout)findViewById(R.id.deptsList);
-        LayoutInflater inflater = getLayoutInflater();
+    private void refreshDeptsList() {
+        final LinearLayout deptsLayout = (LinearLayout)findViewById(R.id.deptsList);
+        deptsLayout.removeAllViews();
+
+        final LayoutInflater inflater = getLayoutInflater();
         List<Dept> depts = getDepts();
 
         for(Dept dept : depts) {
@@ -125,7 +124,7 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onClick(View view) {
                     removeDeptById(id);
-                    findViewById(R.id.deptsScroll).invalidate();
+                    refreshDeptsList();
                 }
             });
 

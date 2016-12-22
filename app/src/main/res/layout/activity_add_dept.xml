@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="Who payed:"
-        android:textSize="24sp"></TextView>
+        android:textSize="14sp"></TextView>
 
     <Spinner
         android:id="@+id/travellersDeptSpinner"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="Summ:"
-        android:textSize="24sp"></TextView>
+        android:textSize="14sp"></TextView>
 
     <EditText
         android:id="@+id/deptDeptSumm"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="Comment:"
-        android:textSize="24sp"></TextView>
+        android:textSize="14sp"></TextView>
 
     <EditText
         android:id="@+id/deptDeptComment"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="Who payed:"
-        android:textSize="24sp"></TextView>
+        android:textSize="14sp"></TextView>
 
     <Spinner
         android:id="@+id/deptTypeDeptSpinner"
