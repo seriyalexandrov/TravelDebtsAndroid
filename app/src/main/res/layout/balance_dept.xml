@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="1pt"
+        android:layout_marginRight="1pt">
+        <TextView
+            android:id="@+id/deptor"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="14sp"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1pt"
+            android:layout_marginRight="1pt"
+            android:text="->"
+            android:textSize="14sp"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/creditor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="14sp"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/deptSumm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="TextView"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/deptCurr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="TextView"></TextView>
+
+    </LinearLayout>
+</LinearLayout>

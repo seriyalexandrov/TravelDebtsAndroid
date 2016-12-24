@@ -67,7 +67,7 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.depts_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -2,17 +2,10 @@ package com.seriyalexandrov.traveldepts.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import com.seriyalexandrov.traveldepts.Constants;
 import com.seriyalexandrov.traveldepts.model.Dept;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static com.seriyalexandrov.traveldepts.Constants.DEPTS_TABLE;
 
