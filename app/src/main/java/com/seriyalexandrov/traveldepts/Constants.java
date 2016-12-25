@@ -1,8 +1,5 @@
 package com.seriyalexandrov.traveldepts;
 
-/**
- * Created by Ser on 21/11/2016.
- */
 public final class Constants {
 
     public static final int DEPTS_FRAME_LAYOUT = 0;
@@ -13,6 +10,8 @@ public final class Constants {
 
     //log
     public static final String LOG_TAG = "TRAVELDEPTS";
+
+    public static String[] travellers = new String[] { "Сергей", "Тагир" };
 
     private Constants() {}
 }

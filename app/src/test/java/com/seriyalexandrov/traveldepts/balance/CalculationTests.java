@@ -40,13 +40,6 @@ public class CalculationTests {
             add(new DeptsResultEntry(new Vertex("Tag"), new Vertex("Ser"), 2d));
         }};
 
-//        System.out.println(graph);
-//
-//        System.out.println("Debts:");
-//        for (DebtsResultEntry entry : results) {
-//            System.out.println(entry);
-//        }
-
         assertEquals(check, results);
     }
 

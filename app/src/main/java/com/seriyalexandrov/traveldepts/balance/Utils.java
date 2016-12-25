@@ -74,11 +74,11 @@ public class Utils {
     }
 
     public static List<DeptsResultEntry> calculateDebtsOnNormallizedGraph(DebtsGraph graph) {
-        List<DeptsResultEntry> resultList = new ArrayList<>();
+        List<DeptsResultEntry> resultList = new ArrayList<DeptsResultEntry>();
         Map<Vertex, HashMap<Vertex, Edge>> vertexMap = graph.vertexMap;
 
-        List<Vertex> profitList = new ArrayList<>();
-        List<Vertex> expenceList = new ArrayList<>();
+        List<Vertex> profitList = new ArrayList<Vertex>();
+        List<Vertex> expenceList = new ArrayList<Vertex>();
 
         for (Vertex person : vertexMap.keySet()) {
             double balance = person.getBalance();

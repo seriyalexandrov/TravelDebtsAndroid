@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.seriyalexandrov.traveldepts.dao.DBUtils;
 import com.seriyalexandrov.traveldepts.dao.DbHelper;
 import com.seriyalexandrov.traveldepts.dao.Queries;
 import com.seriyalexandrov.traveldepts.model.Dept;
@@ -98,7 +99,7 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
         deptsLayout.removeAllViews();
 
         final LayoutInflater inflater = getLayoutInflater();
-        List<Dept> depts = getDepts();
+        List<Dept> depts = DBUtils.getDepts(db);
 
         for(Dept dept : depts) {
             View deptView = inflater.inflate(R.layout.dept, deptsLayout, false);
@@ -123,7 +124,7 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    removeDeptById(id);
+                    DBUtils.removeDeptById(db, id);
                     refreshDeptsList();
                 }
             });
@@ -142,32 +143,5 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
     private String loadText() {
         SharedPreferences sPref = getPreferences(MODE_PRIVATE);
         return sPref.getString("saved", "");
-    }
-
-    private List<Dept> getDepts() {
-
-        List<Dept> depts = new ArrayList<>();
-
-        Cursor c = db.rawQuery(Queries.SELECT_ALL_DEPTS_QUERY, null);
-        if (c == null) return Collections.EMPTY_LIST;
-        if (c.moveToFirst()) {
-            do {
-                String id = c.getString(0);
-                String deptor = c.getString(1);
-                String creditor = c.getString(2);
-                String summ = c.getString(3);
-                String currency = c.getString(4);
-                String comment = c.getString(5);
-                depts.add(new Dept(id, deptor, creditor, summ, currency, comment));
-            } while (c.moveToNext());
-        }
-        c.close();
-        return depts;
-    }
-
-    private void removeDeptById(String id) {
-        Log.i(Constants.LOG_TAG, "id = " + id);
-        String params[] = {id};
-        db.delete(Constants.DEPTS_TABLE, Queries.DELETE_DEPT_BY_ID_CLAUSE, params);
     }
 }

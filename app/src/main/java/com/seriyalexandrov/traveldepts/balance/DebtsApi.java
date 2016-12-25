@@ -6,6 +6,23 @@ import java.util.Set;
 
 public class DebtsApi {
 
+    public static void debtOneToOne(DebtsGraph graph, String creditor, String deptor, double debt) {
+        Vertex c;
+        if (graph.vertexNames.containsKey(creditor)) {
+            c = graph.vertexNames.get(creditor);
+        } else {
+            c = new Vertex(creditor);
+        }
+
+        Vertex d;
+        if (graph.vertexNames.containsKey(deptor)) {
+            d = graph.vertexNames.get(deptor);
+        } else {
+            d = new Vertex(deptor);
+        }
+        graph.addDebt(c, d, debt);
+    }
+
     public static void debtAllToOneExceptCreditorEqualParts(DebtsGraph graph, Vertex creditor, double wholeDebt) {
         int size = graph.size();
         if (size <= 1) {

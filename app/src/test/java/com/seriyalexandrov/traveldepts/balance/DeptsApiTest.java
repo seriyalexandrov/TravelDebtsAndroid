@@ -9,6 +9,18 @@ import java.util.Set;
 public class DeptsApiTest {
 
     @Test
+    public void deptOneToOneTest() {
+        DebtsGraph graph = new DebtsGraph();
+
+        DebtsApi.debtOneToOne(graph, "a", "b", 90);
+
+        Assert.assertEquals(
+                "               a              b              \n" +
+                "a              X              90.0           \n" +
+                "b                             X              ", graph.toString());
+    }
+
+    @Test
     public void debtAllToOneExceptCreditorEqualPartsTest() {
         DebtsGraph graph = new DebtsGraph();
 

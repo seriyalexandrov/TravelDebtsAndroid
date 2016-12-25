@@ -42,7 +42,7 @@ public class AddDeptActivity extends AppCompatActivity implements View.OnClickLi
     private void loadTravellerSpinnerContent() {
 
         travellersSpinner = (Spinner) findViewById(R.id.travellersDeptSpinner);
-        String[] items = new String[] { "Сергей", "Аня", "Надя", "Тагир" };
+        String[] items = Constants.travellers;
         ArrayAdapter<CharSequence> adapter =
                 new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_dropdown_item, items);
         travellersSpinner.setAdapter(adapter);
@@ -50,7 +50,7 @@ public class AddDeptActivity extends AppCompatActivity implements View.OnClickLi
 
     private void loadDeptorsSpinnerContert() {
         deptTypeSpinner = (Spinner) findViewById(R.id.deptTypeDeptSpinner);
-        String[] items = new String[] {"Сергей", "Аня", "Надя", "Тагир"};
+        String[] items = Constants.travellers;
         ArrayAdapter<CharSequence> adapter =
                 new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_dropdown_item, items);
         deptTypeSpinner.setAdapter(adapter);

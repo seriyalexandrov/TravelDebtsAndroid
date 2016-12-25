@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class DebtsGraph {
 
     public HashMap<Vertex, HashMap<Vertex, Edge>> vertexMap = new HashMap<Vertex, HashMap<Vertex, Edge>>();
+    public HashMap<String, Vertex> vertexNames = new HashMap<>();
 
     public int size() {
         return vertexMap.size();
@@ -13,6 +14,7 @@ public class DebtsGraph {
     public void addVertex(Vertex vertex) {
         if (!hasVertex(vertex)) {
             vertexMap.put(vertex, new HashMap<Vertex, Edge>());
+            vertexNames.put(vertex.name, vertex);
         }
     }
 
@@ -26,9 +28,11 @@ public class DebtsGraph {
         }
         if (!hasVertex(creditor)) {
             addVertex(creditor);
+            vertexNames.put(creditor.name, creditor);
         }
         if (!hasVertex(debtor)) {
             addVertex(debtor);
+            vertexNames.put(debtor.name, debtor);
         }
         HashMap<Vertex, Edge> edges1 = vertexMap.get(creditor);
         if (edges1.containsKey(debtor)) {
