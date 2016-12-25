@@ -35,7 +35,6 @@ public class BalanceActivity extends AppCompatActivity {
         db = dbHelper.getReadableDatabase();
 
         setContentView(R.layout.activity_balance);
-
     }
 
     @Override
@@ -52,13 +51,15 @@ public class BalanceActivity extends AppCompatActivity {
 
             case R.id.depts : {
 
-                Intent deptsIntent = new Intent(this, DeptsActivity.class);
+                Intent deptsIntent = new Intent(BalanceActivity.this, DeptsActivity.class);
+                deptsIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(deptsIntent);
                 break;
             }
             case R.id.travellers : {
 
-                Intent travellersIntent = new Intent(this, TravellersActivity.class);
+                Intent travellersIntent = new Intent(BalanceActivity.this, TravellersActivity.class);
+                travellersIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(travellersIntent);
                 break;
             }

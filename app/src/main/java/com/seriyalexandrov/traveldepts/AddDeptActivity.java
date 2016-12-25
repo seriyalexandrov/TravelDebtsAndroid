@@ -39,6 +39,15 @@ public class AddDeptActivity extends AppCompatActivity implements View.OnClickLi
         cancelDeptButton.setOnClickListener(this);
     }
 
+    @Override
+    protected void onPostResume() {
+
+        ((EditText) findViewById(R.id.deptDeptSumm)).setText("");
+        ((EditText) findViewById(R.id.deptDeptComment)).setText("");
+        super.onPostResume();
+
+    }
+
     private void loadTravellerSpinnerContent() {
 
         travellersSpinner = (Spinner) findViewById(R.id.travellersDeptSpinner);

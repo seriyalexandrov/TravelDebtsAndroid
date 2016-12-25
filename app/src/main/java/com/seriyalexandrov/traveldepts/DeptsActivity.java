@@ -58,7 +58,8 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()) {
             case R.id.addDebtButton : {
-                Intent addDeptIntent = new Intent(this, AddDeptActivity.class);
+                Intent addDeptIntent = new Intent(DeptsActivity.this, AddDeptActivity.class);
+                addDeptIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(addDeptIntent);
                 break;
             }
@@ -79,13 +80,15 @@ public class DeptsActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.travellers : {
 
-                Intent travellerIntent = new Intent(this, TravellersActivity.class);
+                Intent travellerIntent = new Intent(DeptsActivity.this, TravellersActivity.class);
+                travellerIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(travellerIntent);
                 break;
             }
             case R.id.balance : {
 
-                Intent balanceIntent = new Intent(this, BalanceActivity.class);
+                Intent balanceIntent = new Intent(DeptsActivity.this, BalanceActivity.class);
+                balanceIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(balanceIntent);
                 break;
             }

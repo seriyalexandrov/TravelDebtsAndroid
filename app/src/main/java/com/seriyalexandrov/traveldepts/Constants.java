@@ -11,7 +11,7 @@ public final class Constants {
     //log
     public static final String LOG_TAG = "TRAVELDEPTS";
 
-    public static String[] travellers = new String[] { "Сергей", "Тагир" };
+    public static String[] travellers = new String[] { "Аня", "Надя", "Сергей", "Тагир"};
 
     private Constants() {}
 }

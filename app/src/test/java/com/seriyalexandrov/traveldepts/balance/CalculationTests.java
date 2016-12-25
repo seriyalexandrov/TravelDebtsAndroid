@@ -73,4 +73,34 @@ public class CalculationTests {
 
         assertEquals(check, results);
     }
+
+    @Test
+    public void calculateDebtsTest3() {
+
+        DebtsGraph graph = new DebtsGraph();
+
+        final Vertex s = new Vertex("s");
+        final Vertex t = new Vertex("t");
+        final Vertex a = new Vertex("a");
+        final Vertex n = new Vertex("n");
+
+        graph.addDebt(a, s, 4);
+        graph.addDebt(s, n, 5);
+        graph.addDebt(n, t, 6);
+        graph.addDebt(s, t, 8);
+
+        Utils.simplifyGraph(graph);
+
+        Utils.calculateVertexBalance(graph);
+
+        List<DeptsResultEntry> results = Utils.calculateDebtsOnNormallizedGraph(graph);
+
+        List<DeptsResultEntry> check = new ArrayList<DeptsResultEntry>() {{
+            add(new DeptsResultEntry(t, a, 4d));
+            add(new DeptsResultEntry(t, s, 9d));
+            add(new DeptsResultEntry(t, n, 1d));
+        }};
+
+        assertEquals(check, results);
+    }
 }

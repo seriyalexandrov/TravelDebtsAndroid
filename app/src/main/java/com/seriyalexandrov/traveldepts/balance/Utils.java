@@ -93,7 +93,7 @@ public class Utils {
         int profitIndex = 0;
         int expenceIndex = 0;
 
-        for (profitIndex = 0; profitIndex < profitList.size(); profitIndex++) {
+        while (profitIndex < profitList.size()) {
 
             Vertex profVertex = profitList.get(profitIndex);
 
@@ -108,15 +108,15 @@ public class Utils {
                     resultList.add(new DeptsResultEntry(expVertex, profVertex, debt));
                 } else if (profVertex.getBalance() < Math.abs(expVertex.getBalance())) {
                     double debt = profVertex.getBalance();
-                    profVertex.setBalance(0d);
                     expVertex.setBalance(expVertex.getBalance() + profVertex.getBalance());
+                    profVertex.setBalance(0d);
                     profitIndex++;
                     resultList.add(new DeptsResultEntry(expVertex, profVertex, debt));
                 } else {
                     double debt = profVertex.getBalance();
                     profVertex.setBalance(0d);
                     expVertex.setBalance(0d);
-                    expenceIndex++;
+                    profitIndex++;
                     expenceIndex++;
                     resultList.add(new DeptsResultEntry(expVertex, profVertex, debt));
                 }
